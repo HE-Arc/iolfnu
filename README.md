@@ -1,3 +1,3 @@
 # iolfnu
-```python
-"".join([chr((ord(c)+10)%26 + ord("a")) for c in "flickr"])
+```ruby
+"flickr".split('').map{|k|((k.ord+10)%26+'a'.ord).chr}.join
