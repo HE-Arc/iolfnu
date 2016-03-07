@@ -1,2 +1,16 @@
-<h1>C'est pas ici</h1>
-<a href="/new">Salut</a>
+<h1>Listing articles</h1>
+
+<%= link_to 'Nouvel article', new_aricle_path %>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Text</th>
+    </tr>
+
+    <% @articles.each do |article| %>
+    <tr>
+        <td><%= article.title %></td>
+        <td><%= article.text %></td>
+    </tr>
+    <% end %>
+</table>
