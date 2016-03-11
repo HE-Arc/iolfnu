@@ -4,13 +4,16 @@
 
 // Google fonts
 @import url(https://fonts.googleapis.com/css?family=Quicksand);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro);
 
 // Font variables
 $quicksand: 'Quicksand', sans-serif;
+$sourcecode: 'Source Code Pro', ;
 
 // Styles
 body {
-  font-weight: normal;
+    font-family: $sourcecode;
+    font-weight: normal;
 }
 
 h1, h2, h3, h4, h5, h6 {
