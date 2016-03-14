@@ -1,0 +1,24 @@
+<% content_for :title, "iolfnu - Photos" %>
+
+<h1>Listing photos</h1>
+
+<%= link_to 'Add photo', new_photo_path,
+            { :class=>"button" } %>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th colspan="3" width="10"></th>
+    </tr>
+
+    <% @photos.each do |photo| %>
+    <tr>
+        <td><%= photo.title %></td>
+        <td><%= photo.description %></td>
+        <td><%= link_to 'Show', photo_path(photo) %></td>
+        <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
+        <td><%= link_to 'Destroy', photo_path(photo), data: {:confirm => 'This will delete permanently this photo'}, :method => :delete %></td>
+    </tr>
+    <% end %>
+</table>

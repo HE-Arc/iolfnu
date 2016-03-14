@@ -1,0 +1,16 @@
+<%= form_for :photo, html: { multipart: true }, url: photos_path do |f|  %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %><br />
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %><br />
+  </p>
+  <p>
+    <%= f.file_field :image %>
+  </p>
+  <p>
+    <%= f.submit "Submit" %>
+  </p>
+<% end %>

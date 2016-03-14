@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+# Own
+#  Foundation : CSS Framework
+gem 'foundation-rails'
+#  Paperclip : Image uploading gem
+gem 'paperclip'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -29,7 +34,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'foundation-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
