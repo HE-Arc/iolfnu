@@ -11,13 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302001232) do
+ActiveRecord::Schema.define(version: 20160314123239) do
 
-  create_table "articles", force: :cascade do |t|
-    t.string   "title"
-    t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "roles", force: :cascade do |t|
+    t.string "label"
+  end
+
+  create_table "roles_users", id: false, force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "role_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles_users", ["role_id", "user_id"], name: "index_roles_users_on_role_id_and_user_id"
+  add_index "roles_users", ["user_id", "role_id"], name: "index_roles_users_on_user_id_and_role_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "password"
+    t.string   "mail"
+    t.string   "pseudo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
