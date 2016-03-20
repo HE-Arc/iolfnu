@@ -13,6 +13,25 @@
 
 ActiveRecord::Schema.define(version: 20160314124843) do
 
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+>>>>>>> 5eac805d0b5287611b66b06bc179ca1079638470
+
   create_table "roles", force: :cascade do |t|
     t.string "label"
   end
@@ -28,6 +47,7 @@ ActiveRecord::Schema.define(version: 20160314124843) do
   add_index "roles_users", ["user_id", "role_id"], name: "index_roles_users_on_user_id_and_role_id"
 
   create_table "users", force: :cascade do |t|
+<<<<<<< HEAD
     t.string   "password"
     t.string   "mail"
     t.string   "pseudo"
@@ -58,6 +78,8 @@ ActiveRecord::Schema.define(version: 20160314124843) do
   end
 
   create_table "users", force: :cascade do |t|
+=======
+>>>>>>> 5eac805d0b5287611b66b06bc179ca1079638470
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
