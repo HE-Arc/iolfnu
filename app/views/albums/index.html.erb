@@ -1,0 +1,13 @@
+<div class="row">
+    <h1>Albums</h1>
+    <%= link_to 'New', new_album_path %>
+
+    <ul>
+        <% @albums.each do |album| %>
+            <li>
+                <%= link_to album.title, album_path(album) %>
+            </li>
+        <% end %>
+    </ul>
+
+</div>
