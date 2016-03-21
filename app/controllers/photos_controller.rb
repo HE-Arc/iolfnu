@@ -1,7 +1,9 @@
 class PhotosController < ApplicationController
+
     # GET /photos
     def index
         @album = Album.find(params[:album_id])
+
 
         @photos = @album.photos
 
@@ -79,7 +81,7 @@ class PhotosController < ApplicationController
     def destroy
         @photo = Photo.find(params[:id])
         @photo.destroy
-        
+
         respond_to do |format|
           format.html { redirect_to root_path }
           format.js
