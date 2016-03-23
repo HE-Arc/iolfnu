@@ -2,8 +2,7 @@ class PhotosController < ApplicationController
 
     # GET /photos
     def index
-        @album = Album.all
-        @photos = @album.each.photos
+        @photos = Photo.all
 
         respond_to do |format|
           format.html # index.html.erb
