@@ -44,7 +44,6 @@ class AlbumsController < ApplicationController
             if @album.save
 
                 if params[:images]
-                    # The magic is here ;)
                     params[:images].each { |image|
                         @album.photos.create(image: image)
                     }
