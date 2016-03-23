@@ -1,11 +1,7 @@
 class PhotosController < ApplicationController
-    #before_filter :authenticate_user!
 
   def show
     @photo = Photo.find(params[:id])
-  end
-
-  def new
   end
 
   def index
@@ -13,6 +9,7 @@ class PhotosController < ApplicationController
   end
 
   def create
+    before_filter :authenticate_user!
     @photo = Photo.create(photo_params)
     redirect_to photos_path
   end
