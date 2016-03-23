@@ -36,3 +36,6 @@ bower.json
 
 # Ignore cache
 .sass-cache/*
+
+# User uploaded pictures
+public/images

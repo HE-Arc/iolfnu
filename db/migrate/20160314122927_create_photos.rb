@@ -4,6 +4,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.attachment :image
+      t.integer :album_id
 
       t.timestamps null: false
     end
