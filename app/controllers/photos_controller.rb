@@ -2,9 +2,7 @@ class PhotosController < ApplicationController
 
     # GET /photos
     def index
-        @album = Album.find(params[:album_id])
-
-        @photos = @album.photos
+        @photos = Photo.all
 
         respond_to do |format|
           format.html # index.html.erb
