@@ -22,12 +22,14 @@ class PhotosController < ApplicationController
 
     # GET /photos/new
     def new
-        @album = Album.find(params[:album_id])
-        @photo = @album.photos.build
+        if user_signed_in?
+            @album = Album.find(params[:album_id])
+            @photo = @album.photos.build
 
-        respond_to do |format|
-          format.html # new.html.erb
-          format.json { render json: @photo }
+            respond_to do |format|
+              format.html # new.html.erb
+              format.json { render json: @photo }
+            end
         end
     end
 
