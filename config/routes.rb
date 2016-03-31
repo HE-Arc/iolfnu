@@ -3,9 +3,14 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   # get 'welcome/index'
-  resources :articles
-  resources :photos
-  resources :albums
+  authenticate :user do
+      resources :photos, only: [:new, :create, :edit, :update, :destroy]
+  end
+  resources :photos, only: [:index, :show]
+  authenticate :user do
+      resources :albums, only: [:new, :create, :edit, :update, :destroy]
+  end
+  resources :albums, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
