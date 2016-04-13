@@ -21,14 +21,20 @@ ActiveRecord::Schema.define(version: 20160323092150) do
     t.integer  "user_id"
   end
 
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "photos", force: :cascade do |t|
     t.string   "title"
-    t.text     "description"
+    t.string   "description"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "album_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
