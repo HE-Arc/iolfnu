@@ -38,7 +38,8 @@ class AlbumsController < ApplicationController
 
     # POST /albums
     def create
-        @album = Album.new(album_params)
+        @user = current_user
+        @album = @user.albums.new(album_params)
 
         respond_to do |format|
             if @album.save
@@ -91,7 +92,7 @@ class AlbumsController < ApplicationController
 
     private
     def album_params
-        params.require(:album).permit(:description, :title, :photos)
+        params.require(:album).permit(:description, :title, :photo)
     end
 
 end
