@@ -1,14 +1,14 @@
 <h1>Album</h1>
 <div class="row">
 
-  <input type="hidden" id="albumID" value="<%= @album.id %>">
+    <input type="hidden" id="albumID" value="<%= @album.id %>">
 
-<p>
-    <b><%= @album.title %></b>
-</p>
-<p>
-    <b><%= @album.description %></b>
-</p>
+    <p>
+        <b><%= @album.title %></b>
+    </p>
+    <p>
+        <b><%= @album.description %></b>
+    </p>
 
   <div class="form-actions">
     <%= link_to 'Back', albums_path, :class => 'btn btn-mini'  %>
