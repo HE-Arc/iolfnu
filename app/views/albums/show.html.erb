@@ -1,14 +1,18 @@
-<h1>Album</h1>
+<% content_for :title, @album.title %>
+
 <div class="row">
 
     <input type="hidden" id="albumID" value="<%= @album.id %>">
 
-    <p>
-        <b><%= @album.title %></b>
-    </p>
-    <p>
-        <b><%= @album.description %></b>
-    </p>
+  <div class="large-12 columns">
+      <h1><%= @album.title %></h1>
+      <p class="subheader"><%= @album.description %></p>
+      <p>
+  </div>
+
+  <div class="row column">
+  <hr>
+  </div>
 
   <div class="form-actions">
     <%= link_to 'Back', albums_path, :class => 'btn btn-mini'  %>
