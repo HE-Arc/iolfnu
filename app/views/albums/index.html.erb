@@ -1,13 +1,10 @@
 <div class="row">
     <h1>Albums</h1>
-    <%= link_to 'New', new_album_path %>
+    <%= link_to 'New', new_album_path, class: 'button success' %>
 
     <ul>
         <% @albums.each do |album| %>
-            <li>
-                <%= link_to album.title, album_path(album) %>
-            </li>
+        <%= link_to album.title, album_path(album) %>
         <% end %>
     </ul>
-
 </div>
