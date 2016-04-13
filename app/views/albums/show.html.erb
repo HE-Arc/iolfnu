@@ -26,10 +26,7 @@
 <% unless @photos.empty? %>
     <% @photos.each do |photo| %>
     <div class="column">
-        <img class="thumbnail" src=<%= photo.image.url %>>
-      <div class="caption">
-          <%= photo.image_file_name %>
-      </div>
+        <%= link_to image_tag(photo.image.url, :class => "thumbnail"), photo_path(photo) %>
     </div>
   <% end %>
 <% end %>
