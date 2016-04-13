@@ -24,7 +24,7 @@
     <div class="column">
         <img class="thumbnail" src=<%= photo.image.url %>>
       <div class="caption">
-          <%= File.basename(photo.image.path) %>
+          <%= photo.image_file_name %>
       </div>
     </div>
   <% end %>
