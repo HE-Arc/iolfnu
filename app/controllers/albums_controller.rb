@@ -3,7 +3,8 @@ class AlbumsController < ApplicationController
 
     # GET /user/{user_id}/albums/
     def index
-        @user = User.find(params[:user_id])
+        @showed_user = User.find(params[:user_id])
+        @user = current_user
         @albums = @user.albums
 
         respond_to do |format|
