@@ -1,11 +1,14 @@
 <div class="row">
     <h1>Albums</h1>
-    <%= link_to 'New', new_album_path %>
+
+    <% if current_user == User.find(params[:user_id]) %>
+        <%= link_to 'New', new_user_album_path %>
+    <% end %>
 
     <ul>
         <% @albums.each do |album| %>
             <li>
-                <%= link_to album.title, album_path(album) %>
+                <%= link_to album.title, user_album_path(@user, album) %>
             </li>
         <% end %>
     </ul>

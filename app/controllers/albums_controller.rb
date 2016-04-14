@@ -1,8 +1,10 @@
 class AlbumsController < ApplicationController
+    before_action :authenticate_user!, :except => [:show, :index]
 
-    # GET /albums
+    # GET /user/{user_id}/albums/
     def index
-        @albums = Album.all
+        @user = User.find(params[:user_id])
+        @albums = @user.albums
 
         respond_to do |format|
             format.html # index.html.erb
@@ -10,9 +12,10 @@ class AlbumsController < ApplicationController
         end
     end
 
-    # GET /albums/{id}
+    # GET /user/{user_id}/albums/{id}
     def show
-        @album = Album.find(params[:id])
+        @user = User.find(params[:user_id])
+        @album = @user.albums.find(params[:id])
         @photos = @album.photos
 
         respond_to do |format|
@@ -23,17 +26,19 @@ class AlbumsController < ApplicationController
 
     # GET /albums/new
     def new
-        @album = Album.new
+        @user = current_user
+        @album = @user.albums.new
 
         respond_to do |format|
-            format.html # new.html.erb
+            format.html
             format.json { render json: @album }
         end
     end
 
     # GET /albums/{id}/edit
     def edit
-        @album = Album.find(params[:id])
+        @user = current_user
+        @album = @user.albums.find(params[:id])
     end
 
     # POST /albums
@@ -50,8 +55,8 @@ class AlbumsController < ApplicationController
                     }
                 end
 
-                format.html { redirect_to @album, notice: 'Album was successfully created.' }
-                format.json { render json: @album, status: :created, location: @album }
+                format.html { redirect_to [@user, @album], notice: 'Album was successfully created.' }
+                format.json { render json: [@user, @album], status: :created, location: @album }
             else
                 format.html { render action: "new" }
                 format.json { render json: @album.errors, status: :unprocessable_entity }
@@ -85,8 +90,8 @@ class AlbumsController < ApplicationController
         @album.destroy  # album.photos depend on destroy
 
         respond_to do |format|
-          format.html { redirect_to albums_url }
-          format.json { head :no_content }
+            format.html { redirect_to albums_url }
+            format.json { head :no_content }
         end
     end
 

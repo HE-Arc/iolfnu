@@ -15,9 +15,9 @@
   </div>
 
   <div class="form-actions">
-    <%= link_to 'Back', albums_path, :class => 'btn btn-mini'  %>
-    <%= link_to 'Edit album', edit_album_path(@album), :class => 'btn btn-mini' %>
-    <%= link_to 'Delete album', album_path(@album), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-mini' %>
+    <%= link_to 'Back', user_albums_path, :class => 'btn btn-mini'  %>
+    <%= link_to 'Edit album', edit_user_album_path(@user, @album), :class => 'btn btn-mini' %>
+    <%= link_to 'Delete album', user_album_path(@user, @album), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-mini' %>
   </div>
 </div>
 

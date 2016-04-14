@@ -1,5 +1,26 @@
 <% content_for :title, "iolfnu" %>
 
-<h3>Matte les <%= link_to 'photos', controller: 'photos' %> wesh !</h3>
+<div class="callout large">
+    <div class="row column text-center">
 
-<h3>Les <%= link_to 'albums', controller: 'albums' %> aussi pls...</h3>
+        <% if user_signed_in? %>
+        <h1>Welcome back <%= current_user.name %></h1>
+        <%= link_to 'Your albums', user_albums_path(current_user), :class => 'button large' %>
+        <% else %>
+        <h1>Welcome to iolfnu</h1>
+        <p class="lead">Please take a seat, or take back yours.</p>
+        <%= link_to('Login', new_user_session_path, :class => "button large") %>
+        <%= link_to('Register', new_user_registration_path, :class => "button large hollow") %>
+        <% end %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-6 columns medium-push-6">
+        <img class="thumbnail" src="http://placehold.it/750x350">
+    </div>
+    <div class="medium-6 columns medium-pull-6">
+        <h2>Here we could display a few pictures</h2>
+        <p>Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor.</p>
+    </div>
+</div>

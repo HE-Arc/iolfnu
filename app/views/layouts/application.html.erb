@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
 
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
 </head>
 
 <body>
 
-  <div class="top-bar">
+    <div class="top-bar">
+        <div class="row">
+            <div class="top-bar-left">
+                <ul class="dropdown menu" data-dropdown-menu>
+                    <li class="name">
+                        <%= link_to 'iolfnu', root_path, {:class => 'top-bar-title'} %>
+                    </li>
+                </ul>
+            </div>
+            <div class="top-bar-right">
+                <ul class="menu">
+                    <li><input type="search" placeholder="Search"></li>
+                    <li><button type="button" class="button">Search</button></li>
 
-    <div class="top-bar-left">
-      <ul class="dropdown menu" data-dropdown-menu>
-        <li class="name">
-          <%= link_to 'iolfnu', root_path, {:class => 'top-bar-title'} %>
-        </li>
-      </ul>
+                    <% if user_signed_in? %>
+                    <li>
+                        <%= link_to current_user.name, edit_user_registration_path %>
+                    </li>
+                    <% end %>
+
+                    <li>
+                        <% if user_signed_in? %>
+                        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                        <% else %>
+                        <%= link_to('Login', new_user_session_path) %>
+                    </li>
+                    <li>
+                        <%= link_to('Register', new_user_registration_path) %>
+                        <% end %>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="top-bar-right">
-      <ul class="menu">
-        <li><input type="search" placeholder="Search"></li>
-        <li><button type="button" class="button">Search</button></li>
-
-        <% if user_signed_in? %>
-            <li>
-                <%= link_to current_user.name, edit_user_registration_path %>
-            </li>
-        <% end %>
-
-        <li>
-        <% if user_signed_in? %>
-            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-        <% else %>
-            <%= link_to('Login', new_user_session_path) %>
-          </li>
-          <li>
-            <%= link_to('Register', new_user_registration_path) %>
-        <% end %>
-        </li>
-
-      </ul>
-    </div>
-  </div>
-  <div class="row">
-    <%= yield %>
-  </div>
+        <div class="row">
+            <%= yield %>
+        </div>
 
 </body>
 </html>
