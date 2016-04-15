@@ -6,8 +6,8 @@
 
   <div class="large-12 columns">
       <h1><%= @album.title %></h1>
-      <p class="subheader"><%= @album.description %></p>
-      <p>
+      <p class="subheader">Created by <%= @album.user.name %></p>
+      <p><%= @album.description %></p>
   </div>
 
   <div class="row column">

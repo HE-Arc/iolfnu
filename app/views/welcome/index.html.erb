@@ -17,7 +17,9 @@
 
 <div class="row">
     <div class="medium-6 columns medium-push-6">
-        <img class="thumbnail" src="http://placehold.it/750x350">
+        <% if @last_photo != nil %>
+            <%= image_tag @last_photo.image.url, :class => 'thumbnail' %>
+        <% end %>
     </div>
     <div class="medium-6 columns medium-pull-6">
         <h2>Here we could display a few pictures</h2>

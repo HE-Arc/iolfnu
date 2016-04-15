@@ -2,14 +2,14 @@
     <h1><%= @user.name %> Albums</h1>
 
     <% if current_user == User.find(params[:user_id]) %>
-        <%= link_to 'New', new_user_album_path, class: 'button success' %>
+    <%= link_to 'Create new album', new_user_album_path, class: 'button success' %>
     <% end %>
 
     <ul>
         <% @albums.each do |album| %>
-            <li>
-                <%= link_to album.title, user_album_path(@user, album) %>
-            </li>
+        <li>
+            <%= link_to album.title, user_album_path(@user, album) %>
+        </li>
         <% end %>
     </ul>
 </div>

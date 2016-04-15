@@ -14,21 +14,17 @@
 </div>
 
 <div class="control-group">
-    <%= f.label :photos, :class => 'control-label' %>
+    <!-- <%= f.label :photos, :class => 'control-label' %> -->
     <div class="controls">
-        <!-- The magic is coming ...look at my eyes....shazammmm -->
-        <!-- Use HTML5 multiple attribute to enable multiple selection
-        and pass back to controller all files as an array, ready
-        for paperclip!!
-        file_field_tag, since images is not a gallery attribute
-    -->
     <%= file_field_tag "images[]", type: :file, multiple: true %>
 </div>
 </div>
 
+<hr />
+
 <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-    user_albums_path, :class => 'btn btn-mini' %>
+    user_albums_path, :class => 'button alert' %>
+    <%= f.submit nil, :class => 'button' %>
 </div>
 <% end %>
