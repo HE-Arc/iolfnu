@@ -1,1 +1,12 @@
+<% content_for :title, @album.title %>
+
 <h1>Édition de <%= @album.title %></h1>
+<h2>Photos</h2>
+<div class="row small-up-2 medium-up-3 large-up-4">
+<% unless @photos.empty? %>
+    <% @photos.each do |photo| %>
+    <div class="column">
+        <%= link_to image_tag(photo.image.url, :class => "thumbnail"), photo_path(photo) %>
+    </div>
+  <% end %>
+<% end %>

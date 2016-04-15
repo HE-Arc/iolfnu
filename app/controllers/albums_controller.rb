@@ -40,6 +40,7 @@ class AlbumsController < ApplicationController
     def edit
         @user = current_user
         @album = @user.albums.find(params[:id])
+        @photos = @album.photos
     end
 
     # POST /albums
