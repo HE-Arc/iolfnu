@@ -14,10 +14,10 @@
   <hr>
   </div>
 
-  <div class="form-actions">
+  <div class="row column form-actions">
     <%= link_to 'Back', user_albums_path, :class => 'button tiny radius'  %>
     <%= link_to 'Edit album', edit_user_album_path(@user, @album), :class => 'button tiny radius' %>
-    <%= link_to 'Delete album', user_album_path(@user, @album), :method => 'delete', :confirm => 'Are you sure?', :class => 'button alert tiny radius' %>
+    <%= link_to 'Delete album', user_album_path(@user, @album), :method => 'delete', data: {confirm: "Are you sure?"}, :class => 'button alert tiny radius' %>
   </div>
 </div>
 

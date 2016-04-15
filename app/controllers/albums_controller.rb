@@ -5,7 +5,7 @@ class AlbumsController < ApplicationController
     def index
         @showed_user = User.find(params[:user_id])
         @user = current_user
-        @albums = @user.albums
+        @albums = @showed_user.albums.order(created_at: :desc)
 
         respond_to do |format|
             format.html # index.html.erb
@@ -90,9 +90,10 @@ class AlbumsController < ApplicationController
     def destroy
         @album = Album.find(params[:id])
         @album.destroy  # album.photos depend on destroy
+        @user = User.find(params[:user_id])
 
         respond_to do |format|
-            format.html { redirect_to albums_url }
+            format.html { redirect_to user_albums_url(@user) }
             format.json { head :no_content }
         end
     end

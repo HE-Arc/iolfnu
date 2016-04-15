@@ -1,15 +1,34 @@
+<% content_for :title, @showed_user.name + " albums" %>
+
 <div class="row">
-    <h1><%= @user.name %> Albums</h1>
+
+  <div class="large-12 columns">
+    <h1><%= @showed_user.name %>'s Albums</h1>
 
     <% if current_user == User.find(params[:user_id]) %>
     <%= link_to 'Create new album', new_user_album_path, class: 'button success' %>
     <% end %>
+  </div>
 
-    <ul>
-        <% @albums.each do |album| %>
-        <li>
-            <%= link_to album.title, user_album_path(@user, album) %>
-        </li>
-        <% end %>
-    </ul>
+  <ul>
+    <% @albums.each_with_index do |album, index| %>
+    <div class="blog-post">
+      <h3><%= link_to album.title, user_album_path(@showed_user, album) %> <small><%= localize(album.created_at, :format => :long) %></small></h3>
+
+      <% album.photos.first(3).each do |photo| %>
+      <%= image_tag(photo.image.url, :style => "max-height:200px; max-width:100%;", :class => "thumbnail") %>
+      <% end %>
+
+      <% if album.photos.count == 0 %>
+      <div class="alert-box alert radius" style="height:200px;">
+        This album doesn't contain any picture.
+      </div>
+      <% end %>
+
+      <p class="subheader"><%= album.description %></p>
+      <p>Created by: <%= link_to @showed_user.name %></p>
+    </div>
+    <hr />
+    <% end %>
+  </ul>
 </div>
