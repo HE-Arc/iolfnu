@@ -1,11 +1,10 @@
 class AlbumsController < ApplicationController
     before_action :authenticate_user!, :except => [:show, :index]
 
-    # GET /user/{user_id}/albums/
+    # GET /user/{user_name}/albums/
     def index
-        @showed_user = User.find(params[:user_id])
-        @user = current_user
-        @albums = @showed_user.albums.order(created_at: :desc)
+        @user = User.find_by_name(params[:user_id])
+        @albums = @user.albums.order(created_at: :desc)
 
         respond_to do |format|
             format.html # index.html.erb
@@ -13,9 +12,9 @@ class AlbumsController < ApplicationController
         end
     end
 
-    # GET /user/{user_id}/albums/{id}
+    # GET /user/{user_name}/albums/{id}
     def show
-        @user = User.find(params[:user_id])
+        @user = User.find_by_name(params[:user_id])
         @album = @user.albums.find(params[:id])
         @photos = @album.photos
 
@@ -27,8 +26,7 @@ class AlbumsController < ApplicationController
 
     # GET /albums/new
     def new
-        @user = current_user
-        @album = @user.albums.new
+        @album = current_user.albums.new
 
         respond_to do |format|
             format.html
@@ -38,15 +36,13 @@ class AlbumsController < ApplicationController
 
     # GET /albums/{id}/edit
     def edit
-        @user = current_user
-        @album = @user.albums.find(params[:id])
+        @album = current_user.albums.find(params[:id])
         @photos = @album.photos
     end
 
     # POST /albums
     def create
-        @user = current_user
-        @album = @user.albums.new(album_params)
+        @album = current_user.albums.new(album_params)
 
         respond_to do |format|
             if @album.save
@@ -57,8 +53,8 @@ class AlbumsController < ApplicationController
                     }
                 end
 
-                format.html { redirect_to [@user, @album], notice: 'Album was successfully created.' }
-                format.json { render json: [@user, @album], status: :created, location: @album }
+                format.html { redirect_to [current_user, @album], notice: 'Album was successfully created.' }
+                format.json { render json: [current_user, @album], status: :created, location: @album }
             else
                 format.html { render action: "new" }
                 format.json { render json: @album.errors, status: :unprocessable_entity }
@@ -88,12 +84,11 @@ class AlbumsController < ApplicationController
 
     # DELETE /albums/{id}
     def destroy
-        @album = Album.find(params[:id])
+        @album = current_user.albums.find(params[:id])
         @album.destroy  # album.photos depend on destroy
-        @user = User.find(params[:user_id])
 
         respond_to do |format|
-            format.html { redirect_to user_albums_url(@user) }
+            format.html { redirect_to user_albums_url(current_user) }
             format.json { head :no_content }
         end
     end

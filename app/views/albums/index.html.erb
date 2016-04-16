@@ -1,11 +1,11 @@
-<% content_for :title, @showed_user.name + " albums" %>
+<% content_for :title, @user.name + " albums" %>
 
 <div class="row">
 
   <div class="large-12 columns">
-    <h1><%= @showed_user.name %>'s Albums</h1>
+    <h1><%= @user.name %>'s Albums</h1>
 
-    <% if current_user == User.find(params[:user_id]) %>
+    <% if current_user == @user %>
     <%= link_to 'Create new album', new_user_album_path, class: 'button success' %>
     <% end %>
   </div>
@@ -13,7 +13,7 @@
   <ul>
     <% @albums.each_with_index do |album, index| %>
     <div class="blog-post">
-      <h3><%= link_to album.title, user_album_path(@showed_user, album) %> <small><%= localize(album.created_at, :format => :long) %></small></h3>
+      <h3><%= link_to album.title, user_album_path(@user, album) %> <small><%= localize(album.created_at, :format => :long) %></small></h3>
 
       <% album.photos.first(3).each do |photo| %>
       <%= image_tag(photo.image.url, :style => "max-height:200px; max-width:100%;", :class => "thumbnail") %>
@@ -26,7 +26,7 @@
       <% end %>
 
       <p class="subheader"><%= album.description %></p>
-      <p>Created by: <%= link_to @showed_user.name %></p>
+      <p>Created by: <%= link_to @user.name %></p>
     </div>
     <hr />
     <% end %>
