@@ -81,7 +81,7 @@ class PhotosController < ApplicationController
         @photo.destroy
 
         respond_to do |format|
-          format.html { redirect_to root_path }
+          format.html { redirect_to edit_user_album(@album, current_user) }
           format.js
         end
     end
