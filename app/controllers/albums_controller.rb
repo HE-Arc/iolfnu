@@ -73,7 +73,7 @@ class AlbumsController < ApplicationController
                         @album.photos.create(image: image)
                     }
                 end
-                format.html { redirect_to @album, notice: 'Album was successfully updated.' }
+                format.html { redirect_to [current_user, @album], notice: 'Album was successfully updated.' }
                 format.json { head :no_content }
             else
                 format.html { render action: "edit" }
