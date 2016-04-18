@@ -78,10 +78,11 @@ class PhotosController < ApplicationController
     # DELETE /photos/{id}
     def destroy
         @photo = Photo.find(params[:id])
+        @album = @photo.album
         @photo.destroy
 
         respond_to do |format|
-          format.html { redirect_to root_path }
+          format.html { redirect_to edit_user_album_path(current_user, @album) }
           format.js
         end
     end
