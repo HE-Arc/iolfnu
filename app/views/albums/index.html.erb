@@ -15,6 +15,7 @@
     <div class="blog-post">
       <h3><%= link_to album.title, user_album_path(@user, album) %> <small><%= localize(album.created_at, :format => :long) %></small></h3>
 
+      <%# FIXME: Je veux pouvoir cliquer là-dessus! %>
       <% album.photos.first(3).each do |photo| %>
       <%= image_tag(photo.image.url, :style => "max-height:200px; max-width:100%;", :class => "thumbnail") %>
       <% end %>
